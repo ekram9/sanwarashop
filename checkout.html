@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Sanwara Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Include EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your User ID
+        (function() {
+            emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS User ID
+        })();
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Sanwara Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="badge bg-danger">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Checkout</h2>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <form id="checkout-form" onsubmit="return validateCheckoutForm(event)">
+                        <!-- Personal Details -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Shipping Address</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div class="mb-3">
+                            <label for="payment-method" class="form-label">Payment Method</label>
+                            <select class="form-select" id="payment-method" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="card">Credit/Debit Card</option>
+                                <option value="cod">Cash on Delivery</option>
+                            </select>
+                        </div>
+
+                        <!-- Card Payment Fields (Hidden by Default) -->
+                        <div id="card-payment-fields">
+                            <div class="mb-3">
+                                <label for="card-number" class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="card-number">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="expiry-date" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="mb-4">
+                            <h4>Order Summary</h4>
+                            <ul id="order-summary" class="list-group">
+                                <!-- Order items will be dynamically inserted here -->
+                            </ul>
+                            <h5 class="mt-3">Total: $<span id="checkout-total">0.00</span></h5>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-success w-100">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2023 Sanwara Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

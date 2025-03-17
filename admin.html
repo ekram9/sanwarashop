@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Admin Dashboard Section -->
+<section class="py-5" style="text-align: center;">
+    <div class="container">
+        <h2 class="text-center mb-5">Admin Dashboard</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Orders</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Payment Method</th>
+                            <th>Total</th>
+                            <th>Items</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table">
+                        <!-- Orders will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script to load orders -->
+<script>
+    function loadOrders() {
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const ordersTable = document.getElementById('orders-table');
+
+        ordersTable.innerHTML = orders.map(order => `
+            <tr>
+                <td>${order.date}</td>
+                <td>${order.name}</td>
+                <td>${order.email}</td>
+                <td>${order.address}</td>
+                <td>${order.paymentMethod}</td>
+                <td>$${order.total}</td>
+                <td>${order.items.map(item => `${item.name} (${item.quantity}x)`).join(', ')}</td>
+            </tr>
+        `).join('');
+    }
+
+    // Load orders when the page loads
+    loadOrders();
+</script>
+    
+</body>
+</html>
+
+
+
+
